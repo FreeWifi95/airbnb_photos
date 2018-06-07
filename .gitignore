@@ -24,3 +24,7 @@ coverage
 build/
 dist/
 
+Untitled.code-workspace
+
+.eslintignore
+
