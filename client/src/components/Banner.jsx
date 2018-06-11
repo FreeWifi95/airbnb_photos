@@ -5,7 +5,7 @@ class Banner extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: [{url: ''}],
+      photos: [{ url: '' }],
       galleryOpen: false,
       currentIndex: 0,
     };
@@ -13,6 +13,8 @@ class Banner extends React.Component {
     this.closeGallery = this.closeGallery.bind(this);
     this.reverseSlide = this.reverseSlide.bind(this);
     this.forwardSlide = this.forwardSlide.bind(this);
+    this.setOpacity = this.setOpacity.bind(this);
+    this.selectThumbnail = this.selectThumbnail.bind(this);
   }
   componentDidUpdate(prevProps) {
     this.setOpacity();
@@ -23,6 +25,16 @@ class Banner extends React.Component {
         currentIndex: 0,
       });
     }
+  }
+  setOpacity() {
+    this.state.photos.forEach((photo) => {
+      const thumbnail = photo;
+      if (this.state.photos.indexOf(photo) === this.state.currentIndex) {
+        thumbnail.opacity = '1';
+      } else {
+        thumbnail.opacity = '0.3';
+      }
+    });
   }
   openGallery() {
     this.setState({
@@ -45,60 +57,68 @@ class Banner extends React.Component {
         currentIndex: this.state.currentIndex + 1,
       });
     }
-    // this.setOpacity();
   }
   reverseSlide() {
     if (this.state.currentIndex === 0) {
       this.setState({
-        currentIndex: this.state.photos.length - 1, 
+        currentIndex: this.state.photos.length - 1,
       });
     } else {
       this.setState({
         currentIndex: this.state.currentIndex - 1,
       });
     }
-    // this.setOpacity();
   }
-  setOpacity() {
-    this.state.photos.forEach((photo) => {
-      if (this.state.photos.indexOf(photo) === this.state.currentIndex) {
-        photo.opacity = "1";
-      } else {
-        photo.opacity = "0.3";
+  selectThumbnail(event) {
+    const thumbnailUrl = event.target.src;
+    this.props.photos.forEach((photo) => {
+      if (photo.url === thumbnailUrl) {
+        this.setState({
+          currentIndex: this.props.photos.indexOf(photo),
+        });
       }
     });
+    this.setOpacity();
   }
+
   render() {
     if (this.state.galleryOpen === true) {
       return (
         <div>
-          <img id="bannerPhoto" src={this.props.photos[0].url} onClick={this.openGallery} /*currentSlide(1)"*//>
+          <button className="bannerButton" onClick={this.openGallery}>
+            <img id="bannerPhoto" alt="" src={this.props.photos[0].url} />
+          </button>
           <div id="myModal" className="modal" display="block">
-            <div className="close cursor" onClick={this.closeGallery}>&times;</div>
-              <a className="prev" onClick={this.reverseSlide}>&#10094;</a>
-              <a className="next" onClick={this.forwardSlide}>&#10095;</a>
+            <button className="close cursor" onClick={this.closeGallery}>&times;</button>
+            <button className="prev" onClick={this.reverseSlide}>&#10094;</button>
+            <button className="next" onClick={this.forwardSlide}>&#10095;</button>
             <div className="modal-content">
-
               <div className="mainSlide">
-                <img className="mainSlidePhoto" src={this.state.photos[this.state.currentIndex].url}/>
-                {/* <div className="numbertext">{`${this.state.photos.indexOf(this.state.photos[this.state.currentIndex]) + 1}/${this.state.photos.length}: ${this.state.photos[this.state.currentIndex].description}`}</div> */}
+                <img className="mainSlidePhoto" alt="" src={this.state.photos[this.state.currentIndex].url} />
               </div>
-          
-              <Slider currentIndex={this.state.currentIndex} photos={this.props.photos}/>
-          
-
+              <Slider
+                currentIndex={this.state.currentIndex}
+                photos={this.props.photos}
+                setOpacity={this.setOpacity}
+                selectThumbnail={this.selectThumbnail}
+              />
             </div>
           </div>
         </div>
-      )
-    } else {
-      return (
-        <div>
-          <img id="bannerPhoto" src={this.props.photos[0].url} onClick={this.openGallery} /*currentSlide(1)"*/ className="hover-shadow"/>
-        </div>
-      )
+      );
     }
+    return (
+      <div>
+        <button className="bannerButton" onClick={this.openGallery}>
+          <img id="bannerPhoto" alt="" src={this.props.photos[0].url} />
+        </button>
+      </div>
+    );
   }
+}
+
+Banner.propTypes = {
+  photos: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };
 
 export default Banner;
