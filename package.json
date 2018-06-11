@@ -21,6 +21,7 @@
     "mysql": "^2.15.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-transition-group": "^2.3.1",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
