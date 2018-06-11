@@ -1,4 +1,4 @@
 module.exports = {
-  user: 'root', 
-  database: 'sharebnb_photos'
+  user: 'root',
+  database: 'sharebnb_photos',
 };

@@ -1,15 +1,17 @@
 const express = require('express');
-const app = express();
 const db = require('../database');
 const bodyParser = require('body-parser');
+const path = require('path');
+
+const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '/../client/dist')));
 
-app.get('/houses/', (req, res) => {
-  const url_id = req.param('id');
-  db.getHousePics(url_id, (error, data) => {
+app.get('/:id', (req, res) => {
+  const houseId = req.params.id;
+  db.getHousePics(houseId, (error, data) => {
     if (error) {
       res.status(500).send();
     } else {
@@ -18,4 +20,4 @@ app.get('/houses/', (req, res) => {
   });
 });
 
-app.listen(3003, () => console.log('listening on port 3003'));
+app.listen(3003);
