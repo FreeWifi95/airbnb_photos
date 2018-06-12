@@ -11,7 +11,7 @@ class App extends React.Component {
     };
   }
   componentDidMount() {
-    this.getPhotos(95);
+    this.getPhotos(39);
   }
   getPhotos(houseId) {
     axios.get(`http://localhost:3003/${houseId}`)
