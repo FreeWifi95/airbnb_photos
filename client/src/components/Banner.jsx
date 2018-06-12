@@ -8,6 +8,7 @@ class Banner extends React.Component {
       photos: [{ url: '' }],
       galleryOpen: false,
       currentIndex: 0,
+      marginLeft: 0,
     };
     this.openGallery = this.openGallery.bind(this);
     this.closeGallery = this.closeGallery.bind(this);
@@ -51,6 +52,12 @@ class Banner extends React.Component {
     if (this.state.currentIndex + 1 === this.state.photos.length) {
       this.setState({
         currentIndex: 0,
+        marginLeft: 0,
+      });
+    } else if (this.state.currentIndex >= 3 && this.state.currentIndex < this.state.photos.length - 4) {
+      this.setState({
+        currentIndex: this.state.currentIndex + 1,
+        marginLeft: this.state.marginLeft - 110,
       });
     } else {
       this.setState({
@@ -62,6 +69,12 @@ class Banner extends React.Component {
     if (this.state.currentIndex === 0) {
       this.setState({
         currentIndex: this.state.photos.length - 1,
+        marginLeft: 0,
+      });
+    } if (this.state.currentIndex >= 4 && this.state.currentIndex < this.state.photos.length - 3) {
+      this.setState({
+        currentIndex: this.state.currentIndex - 1,
+        marginLeft: this.state.marginLeft + 110,
       });
     } else {
       this.setState({
@@ -101,6 +114,7 @@ class Banner extends React.Component {
                 photos={this.props.photos}
                 setOpacity={this.setOpacity}
                 selectThumbnail={this.selectThumbnail}
+                marginLeft={this.state.marginLeft}
               />
             </div>
           </div>
