@@ -23,7 +23,7 @@ class Banner extends React.Component {
       this.setState({
         photos: this.props.photos,
         galleryOpen: this.state.galleryOpen,
-        currentIndex: 0,
+        marginLeft: this.state.marginLeft,
       });
     }
   }
@@ -69,14 +69,18 @@ class Banner extends React.Component {
     if (this.state.currentIndex === 0) {
       this.setState({
         currentIndex: this.state.photos.length - 1,
-        marginLeft: 0,
       });
+      if (this.props.photos.length > 7) {
+        this.setState({
+          marginLeft: -((this.state.photos.length - 7) * 110),
+        });
+      }
     } if (this.state.currentIndex >= 4 && this.state.currentIndex < this.state.photos.length - 3) {
       this.setState({
         currentIndex: this.state.currentIndex - 1,
         marginLeft: this.state.marginLeft + 110,
       });
-    } else {
+    } else if ((this.state.currentIndex > 0 && this.state.currentIndex < 4) || (this.state.currentIndex >= this.state.photos.length - 3 && this.state.currentIndex < this.state.photos.length)) {
       this.setState({
         currentIndex: this.state.currentIndex - 1,
       });
