@@ -1,4 +1,4 @@
-import path from 'path';
+const path = require('path');
 
 module.exports = {
   entry: path.join(__dirname, '/client/src/index.jsx'),
@@ -17,7 +17,7 @@ module.exports = {
         test: /\.css$/,
         loaders: [
           'style-loader?sourceMap',
-          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',"'"
+          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
         ],
       },
     ],
