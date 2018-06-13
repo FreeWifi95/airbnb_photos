@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './style.css';
 
 const sliderStyles = {
   transition: 'padding 0.25s',
@@ -94,28 +95,28 @@ class Slider extends React.Component {
   render() {
     if (this.state.listShown === true) {
       return (
-        <div className="sliderContainer" style={{ ...sliderStyles, paddingTop: this.state.paddingTop }}>
-          <div className="numbertext" style={{ ...sliderStyles, paddingTop: this.state.paddingTop }}>{`${this.props.photos.indexOf(this.props.photos[this.state.currentIndex]) + 1}/${this.props.photos.length}: ${this.props.photos[this.props.currentIndex].description}`}
-            <button className="toggleList" onClick={e => this.toggleList(e)}>Hide photo list <i className="fa fa-caret-down" /></button>
+        <div className={styles.sliderContainer} style={{ ...sliderStyles, paddingTop: this.state.paddingTop }}>
+          <div className={styles.numbertext} style={{ ...sliderStyles, paddingTop: this.state.paddingTop }}>{`${this.props.photos.indexOf(this.props.photos[this.state.currentIndex]) + 1}/${this.props.photos.length}: ${this.props.photos[this.props.currentIndex].description}`}
+            <button className={styles.toggleList} onClick={e => this.toggleList(e)}>Hide photo list <i className="fa fa-caret-down" /></button>
           </div>
-          <div className="slider" style={{ ...sliderStyles, paddingTop: this.state.paddingTop }}>
-            <ul className="thumbnails" style={{ ...thumbnailStyles, marginLeft: this.state.marginLeft }}>
+          <div className={styles.slider} style={{ ...sliderStyles, paddingTop: this.state.paddingTop }}>
+            <ul className={styles.thumbnails} style={{ ...thumbnailStyles, marginLeft: this.state.marginLeft }}>
               {this.props.photos.map(photo =>
-                <li className="thumbnail"><button className="thumbnailButton" onClick={(e) => { this.props.selectThumbnail(e); this.moveSlides(e); }}><img className="thumbnailPhoto" alt="" src={photo.url} style={{ opacity: photo.opacity }} /></button></li>)}
+                <li className={styles.thumbnail}><button className={styles.thumbnailButton} onClick={(e) => { this.props.selectThumbnail(e); this.moveSlides(e); }}><img className={styles.thumbnailPhoto} alt="" src={photo.url} style={{ opacity: photo.opacity }} /></button></li>)}
             </ul>
           </div>
         </div>
       );
     }
     return (
-      <div className="sliderContainer" style={{ ...sliderStyles, paddingTop: this.state.paddingTop }}>
-        <div className="numbertext" style={{ ...sliderStyles, paddingTop: this.state.paddingTop }}>{`${this.props.photos.indexOf(this.props.photos[this.state.currentIndex]) + 1}/${this.props.photos.length}: ${this.props.photos[this.props.currentIndex].description}`}
-          <button className="toggleList" onClick={e => this.toggleList(e)}>Show photo list <i className="fa fa-caret-up" /></button>
+      <div className={styles.sliderContainer} style={{ ...sliderStyles, paddingTop: this.state.paddingTop }}>
+        <div className={styles.numbertext} style={{ ...sliderStyles, paddingTop: this.state.paddingTop }}>{`${this.props.photos.indexOf(this.props.photos[this.state.currentIndex]) + 1}/${this.props.photos.length}: ${this.props.photos[this.props.currentIndex].description}`}
+          <button className={styles.toggleList} onClick={e => this.toggleList(e)}>Show photo list <i className="fa fa-caret-up" /></button>
         </div>
-        <div className="slider" style={{ ...sliderStyles, paddingTop: this.state.paddingTop }}>
-          <ul className="thumbnails" style={{ ...thumbnailStyles, marginLeft: this.state.marginLeft }}>
+        <div className={styles.slider} style={{ ...sliderStyles, paddingTop: this.state.paddingTop }}>
+          <ul className={styles.thumbnails} style={{ ...thumbnailStyles, marginLeft: this.state.marginLeft }}>
             {this.props.photos.map(photo =>
-              <li className="thumbnail"><button className="thumbnailButton" onClick={e => this.props.selectThumbnail(e)}><img className="thumbnailPhoto" alt="" src={photo.url} style={{ opacity: photo.opacity }} /></button></li>)}
+              <li className={styles.thumbnail}><button className={styles.thumbnailButton} onClick={e => this.props.selectThumbnail(e)}><img className={styles.thumbnailPhoto} alt="" src={photo.url} style={{ opacity: photo.opacity }} /></button></li>)}
           </ul>
         </div>
       </div>

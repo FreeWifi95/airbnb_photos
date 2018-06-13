@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from './Slider.jsx';
+import styles from './style.css';
 
 class Banner extends React.Component {
   constructor(props) {
@@ -102,16 +103,16 @@ class Banner extends React.Component {
     if (this.state.galleryOpen === true) {
       return (
         <div>
-          <button className="bannerButton" onClick={this.openGallery}>
-            <img id="bannerPhoto" alt="" src={this.props.photos[0].url} />
+          <button className={styles.bannerButton} onClick={this.openGallery}>
+            <img id={styles.bannerPhoto} alt="" src={this.props.photos[0].url} />
           </button>
-          <div id="myModal" className="modal" display="block">
-            <button className="close cursor" onClick={this.closeGallery}>&times;</button>
-            <button className="prev" onClick={this.reverseSlide}>&#10094;</button>
-            <button className="next" onClick={this.forwardSlide}>&#10095;</button>
-            <div className="modal-content">
-              <div className="mainSlide">
-                <img className="mainSlidePhoto" alt="" src={this.state.photos[this.state.currentIndex].url} />
+          <div id="myModal" className={styles.modal} display="block">
+            <button className={styles.close} onClick={this.closeGallery}>&times;</button>
+            <button className={styles.prev} onClick={this.reverseSlide}>&#10094;</button>
+            <button className={styles.next} onClick={this.forwardSlide}>&#10095;</button>
+            <div className={styles.modalContent}>
+              <div className={styles.mainSlide}>
+                <img className={styles.mainSlidePhoto} alt="" src={this.state.photos[this.state.currentIndex].url} />
               </div>
               <Slider
                 currentIndex={this.state.currentIndex}
@@ -127,8 +128,8 @@ class Banner extends React.Component {
     }
     return (
       <div>
-        <button className="bannerButton" onClick={this.openGallery}>
-          <img id="bannerPhoto" alt="" src={this.props.photos[0].url} />
+        <button className={styles.bannerButton} onClick={this.openGallery}>
+          <img id={styles.bannerPhoto} alt="" src={this.props.photos[0].url} />
         </button>
       </div>
     );
