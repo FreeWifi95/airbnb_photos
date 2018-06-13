@@ -1,0 +1,180 @@
+body {
+  margin: 0px;
+  overflow: hidden;
+}
+
+.bannerButton {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  width: 100%;
+}
+
+.bannerButton:focus {
+  outline: 0;
+}
+
+#bannerPhoto {
+  object-fit: cover;
+  width: 100%;
+  max-width: 100%;
+  height: 368px;
+}
+
+#bannerPhoto:hover {
+  cursor: pointer;
+}
+
+.modal {
+  position: absolute;
+  z-index: 1;
+  padding-top: 86px;
+  margin: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 20%;
+  background-color: rgba(0,0,0,0.85);
+}
+
+.modalContent {
+  background-color: transparent;
+  margin: auto;
+  padding: 0;
+  width: auto;
+  height: 100%;
+  max-width: 738px;
+  color: white;
+  position: relative;
+}
+
+.mainSlide {
+  width: 738px;
+  height: 495px;
+}
+
+.mainSlide:hover {
+  cursor: pointer;
+}
+
+.mainSlidePhoto {
+  max-width: 100%;
+  height: 100%;
+  display: block;
+  margin: auto;
+}
+
+.sliderContainer {
+  overflow: hidden;
+  bottom: 0;
+  z-index: 2;
+  position: relative;
+  width: 738px;
+  margin-top: -10px;
+  margin-bottom: 24px;
+  transition: -ms-transform 0.2s ease-out, -webkit-transform 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.numbertext {
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 12px;
+}
+
+.toggleList {
+  right: 0;
+  position: absolute;
+  background-color: transparent;
+  color: white;
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  border: none;
+}
+
+.slider {
+  height: 67px;
+  width: 738px;
+  overflow: hidden;
+}
+
+.thumbnails {
+  position: relative;
+  display: block;
+  width: 6000px;
+  height: 67px;
+  margin-top: 0;
+  padding: 0;
+  left: 0px;
+}
+
+.thumbnail {
+  float: left;
+  list-style-type: none;
+  margin-right: 10px;
+  max-width: 100%;
+  max-height: 100%;
+  width:  100px;
+}
+
+.thumbnailButton {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.thumbnailButton:hover {
+  cursor: pointer;
+}
+
+.thumbnailPhoto {
+  width:  100px;
+  height: 67px;
+  object-fit: cover; 
+}
+
+.close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 64px;
+  background-color: transparent;
+  border: none;
+}
+  
+.close:hover {
+  cursor: pointer;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-size: 40px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+  background-color: transparent;
+  border: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.close,
+.prev,
+.next:focus {
+  outline: 0;
+}
