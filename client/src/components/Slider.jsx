@@ -24,7 +24,6 @@ class Slider extends React.Component {
     if (prevProps.currentIndex !== this.props.currentIndex) {
       this.setState({
         currentIndex: this.props.currentIndex,
-        // marginLeft: this.props.marginLeft,
       });
     }
     if (prevProps.marginLeft !== this.props.marginLeft) {
@@ -37,28 +36,47 @@ class Slider extends React.Component {
         paddingTop: this.state.paddingTop,
       });
     }
-    if (prevState.marginLeft !== this.state.marginLeft) {
-      this.setState({
-        marginLeft: this.state.marginLeft,
-      });
-    }
   }
   moveSlides(event) {
     this.props.photos.forEach((photo) => {
-      if (photo.url === event.target.src) {
-        if (this.props.photos.indexOf(photo) > this.state.currentIndex && this.state.currentIndex >= 3 && this.state.currentIndex < this.props.photos.length - 4) {
-          console.log('working');
-          this.setState({
-            marginLeft: this.state.marginLeft - 110,
-          });
-          console.log(this.state.marginLeft);
-        } else if (this.props.photos.indexOf(photo) < this.state.currentIndex && this.state.currentIndex >= 4 && this.state.currentIndex < this.props.photos.length - 3) {
-          this.setState({
-            marginLeft: this.state.marginLeft + 110,
-          });
-        }
+      if (this.props.photos.length > 7 && photo.url === event.target.src && this.props.photos.indexOf(photo) > this.state.currentIndex) {
+        this.moveRight(photo);
+      } else if (this.props.photos.length > 7 && photo.url === event.target.src && this.props.photos.indexOf(photo) < this.state.currentIndex) {
+        this.moveLeft(photo);
       }
     });
+  }
+  moveRight(photo) {
+    if (this.state.currentIndex < 3 && this.props.photos.indexOf(photo) > 3) {
+      this.setState({
+        marginLeft: this.state.marginLeft - ((this.props.photos.indexOf(photo) - 3) * 110),
+        currentIndex: this.props.photos.indexOf(photo),
+      });
+    } else if (this.state.currentIndex >= 3 && this.props.photos.indexOf(photo) < this.props.photos.length - 3) {
+      this.setState({
+        marginLeft: this.state.marginLeft - ((this.props.photos.indexOf(photo) - this.state.currentIndex) * 110),
+        currentIndex: this.props.photos.indexOf(photo),
+      });
+    } else if (this.state.currentIndex >= 3 && this.state.currentIndex < this.props.photos.length - 3 && this.props.photos.indexOf(photo) > this.props.photos.length - 2) {
+      this.setState({
+        marginLeft: this.state.marginLeft - ((this.props.photos.length - this.props.photos.indexOf(photo) - 1) * 110),
+        currentIndex: this.props.photos.indexOf(photo),
+      });
+    } 
+  }
+  moveLeft(photo) {
+    if (this.state.currentIndex >= 3 && this.props.photos.indexOf(photo) < this.props.photos.length - 3 && this.props.photos.indexOf(photo) > 2) {
+      this.setState({
+        marginLeft: this.state.marginLeft + ((this.state.currentIndex - this.props.photos.indexOf(photo)) * 110),
+        currentIndex: this.props.photos.indexOf(photo),
+      });
+    }
+    if ((this.state.currentIndex === 4 || this.state.currentIndex === 5) && (this.props.photos.indexOf(photo) === 1 || this.props.photos.indexOf(photo) === 2)) {
+      this.setState({
+        marginLeft: this.state.marginLeft + ((this.state.currentIndex - this.props.photos.indexOf(photo) - 1) * 110),
+        currentIndex: this.props.photos.indexOf(photo),
+      });
+    }
   }
   toggleList() {
     if (this.state.paddingTop === 0) {

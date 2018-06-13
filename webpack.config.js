@@ -13,6 +13,13 @@ module.exports = {
           plugins: ['transform-object-rest-spread'],
         },
       },
+      {
+        test: /\.css$/,
+        loaders: [
+          'style-loader?sourceMap',
+          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',"'"
+        ],
+      },
     ],
   },
   output: {
