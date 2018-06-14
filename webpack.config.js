@@ -24,7 +24,7 @@ module.exports = {
   },
   output: {
     filename: 'photosBundle.js',
-    path: path.join(__dirname, '/client/dist'),
+    path: path.join(__dirname, '/public'),
   },
   resolve: {
     extensions: ['.js', '.jsx'],

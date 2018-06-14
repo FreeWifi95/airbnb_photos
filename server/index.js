@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/:id', express.static(path.join(__dirname, '/../client/dist')));
+app.use('/:id', express.static(path.join(__dirname, '/../public')));
 
 app.get('/photos/:id', (req, res) => {
   const houseId = req.params.id;
