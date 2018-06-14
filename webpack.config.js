@@ -23,7 +23,7 @@ module.exports = {
     ],
   },
   output: {
-    filename: 'bundle.js',
+    filename: 'photosBundle.js',
     path: path.join(__dirname, '/client/dist'),
   },
   resolve: {
