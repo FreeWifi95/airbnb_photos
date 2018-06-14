@@ -11,10 +11,11 @@ class App extends React.Component {
     };
   }
   componentDidMount() {
-    this.getPhotos(60);
+    this.getPhotos();
   }
-  getPhotos(houseId) {
-    axios.get(`http://localhost:3003/${houseId}`)
+  getPhotos() {
+    const endPoint = window.location.pathname;
+    axios.get(`/photos${endPoint}`)
       .then((response) => {
         this.setState({
           photos: response.data,
@@ -34,4 +35,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('photos'));
